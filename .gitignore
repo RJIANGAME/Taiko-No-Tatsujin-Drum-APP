@@ -1,0 +1,13 @@
+.gradle/
+.playwright-mcp/
+build/
+**/build/
+local.properties
+.idea/
+*.iml
+*.apk
+*.aab
+*.keystore
+receiver/bin/
+receiver/obj/
+receiver/publish/

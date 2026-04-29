@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taiko Phone Drum</title>
+  <meta name="description" content="Use an Android phone as a four-zone taiko drum controller for Windows rhythm games.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23ffd97d'/%3E%3Ccircle cx='32' cy='32' r='21' fill='%23e93425'/%3E%3Ccircle cx='32' cy='32' r='11' fill='%23168ee6'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav" aria-label="Primary">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Taiko Phone Drum</span>
+      </div>
+      <div class="nav-actions">
+        <a href="#setup">Setup</a>
+        <a href="#controls">Controls</a>
+        <a class="button small" href="https://github.com/RJIANGAME/Taiko-No-Tatsujin-Drum-APP">GitHub</a>
+      </div>
+    </nav>
+
+    <section class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Android drum controller for Windows</p>
+        <h1>Turn your phone into a taiko drum.</h1>
+        <p class="lead">Tap blue rims and red drum zones on your phone. The PC receiver sends physical-key scan codes for D, F, J, and K.</p>
+        <div class="cta-row">
+          <a class="button" href="#setup">Start Setup</a>
+          <a class="button ghost" href="#download">Build APK</a>
+        </div>
+      </div>
+
+      <div class="phone-preview" aria-label="Phone app preview">
+        <div class="phone-top">
+          <span>TAIKO</span>
+          <span>Wi-Fi</span>
+          <span>OK</span>
+        </div>
+        <div class="flags" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="drum-board">
+          <div class="pad rim"><strong>D</strong><em>KA</em></div>
+          <div class="pad drum"><strong>F</strong><em>DON</em></div>
+          <div class="pad drum"><strong>J</strong><em>DON</em></div>
+          <div class="pad rim"><strong>K</strong><em>KA</em></div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section id="controls" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Four zones</p>
+        <h2>Simple mapping for fast play</h2>
+      </div>
+      <div class="zone-grid">
+        <article class="zone rim"><span>D</span><h3>Left Rim</h3><p>Blue side hit, KA.</p></article>
+        <article class="zone drum"><span>F</span><h3>Left Drum</h3><p>Red center hit, DON.</p></article>
+        <article class="zone drum"><span>J</span><h3>Right Drum</h3><p>Red center hit, DON.</p></article>
+        <article class="zone rim"><span>K</span><h3>Right Rim</h3><p>Blue side hit, KA.</p></article>
+      </div>
+    </section>
+
+    <section id="setup" class="section split">
+      <div>
+        <p class="eyebrow">Connection</p>
+        <h2>Wi-Fi or USB debugging mode</h2>
+        <p>The receiver shows your PC IP address. Type that IP into the Android app, keep port 27183, then tap Wi-Fi. For USB, run the ADB reverse helper and tap USB in the app.</p>
+      </div>
+      <ol class="steps">
+        <li><span>1</span><p>Double-click <code>Taiko-Drum-Menu.bat</code>.</p></li>
+        <li><span>2</span><p>Choose Wi-Fi receiver, or admin receiver if the game needs it.</p></li>
+        <li><span>3</span><p>Enter the shown PC IP in the phone app and play.</p></li>
+      </ol>
+    </section>
+
+    <section id="download" class="section command-section">
+      <div class="section-heading">
+        <p class="eyebrow">Build</p>
+        <h2>Local debug APK</h2>
+      </div>
+      <div class="terminal">
+        <p><span>PS&gt;</span> .\scripts\build-android.ps1</p>
+        <p><span>PS&gt;</span> .\scripts\install-apk.ps1 -BuildFirst</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fan-made controller utility. No official Taiko no Tatsujin assets are included.</p>
+  </footer>
+</body>
+</html>
