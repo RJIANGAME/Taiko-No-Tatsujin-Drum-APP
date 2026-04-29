@@ -19,6 +19,15 @@ Taiko-Drum-Menu.bat
 
 The menu includes Wi-Fi receiver, admin receiver, USB setup, APK build, and APK install options.
 
+## Download Release
+
+For normal users, download these from the latest GitHub release:
+
+- `Taiko-Phone-Drum-Windows.zip`: Windows receiver/menu package. Extract it, then double-click `Taiko-Drum-Menu.bat`.
+- `Taiko-Phone-Drum-debug.apk`: Android phone app.
+
+The Windows ZIP includes the BAT file, receiver scripts, USB helper, APK install helper, and a copy of the APK, so the BAT works after extraction.
+
 ```powershell
 .\scripts\build-android.ps1
 ```

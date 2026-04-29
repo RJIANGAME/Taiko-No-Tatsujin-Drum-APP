@@ -18,15 +18,15 @@ echo  [1] Start Wi-Fi receiver
 echo  [2] Start Wi-Fi receiver with token
 echo  [3] Start Wi-Fi receiver as Administrator
 echo  [4] Setup USB mode
-echo  [5] Build APK
-echo  [6] Install APK to connected phone
+echo  [5] Install APK to connected phone
+echo  [6] Build APK from source
 echo  [7] Exit
 echo.
 choice /C 1234567 /N /M "Choose an option: "
 
 if errorlevel 7 goto exit
-if errorlevel 6 goto install
-if errorlevel 5 goto build
+if errorlevel 6 goto build
+if errorlevel 5 goto install
 if errorlevel 4 goto usb
 if errorlevel 3 goto receiver_admin
 if errorlevel 2 goto receiver_token
@@ -87,6 +87,14 @@ goto menu
 cls
 color 06
 echo Building debug APK...
+if not exist "%~dp0gradlew.bat" (
+    echo.
+    echo Source project files are not included in this release package.
+    echo Download the repository source if you want to rebuild the APK.
+    echo.
+    pause
+    goto menu
+)
 echo.
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\build-android.ps1"
 echo.

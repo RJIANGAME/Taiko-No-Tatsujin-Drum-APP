@@ -19,12 +19,26 @@ jobs:
           java-version: "21"
       - name: Build APK
         run: ./gradlew :app:assembleDebug
+      - name: Pack Windows release ZIP
+        shell: pwsh
+        run: |
+          $package = "dist/Taiko-Phone-Drum-Windows"
+          New-Item -ItemType Directory -Force -Path "$package/scripts", "$package/receiver" | Out-Null
+          Copy-Item "Taiko-Drum-Menu.bat" "$package/"
+          Copy-Item "release/README.txt" "$package/"
+          Copy-Item "scripts/run-receiver.ps1" "$package/scripts/"
+          Copy-Item "scripts/usb-adb-reverse.ps1" "$package/scripts/"
+          Copy-Item "scripts/install-apk.ps1" "$package/scripts/"
+          Copy-Item "receiver/TaikoDrumReceiver.ps1" "$package/receiver/"
+          Copy-Item "app/build/outputs/apk/debug/app-debug.apk" "$package/Taiko-Phone-Drum-debug.apk"
+          Compress-Archive -Path "$package/*" -DestinationPath "dist/Taiko-Phone-Drum-Windows.zip" -Force
+          Copy-Item "app/build/outputs/apk/debug/app-debug.apk" "dist/Taiko-Phone-Drum-debug.apk"
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "$GITHUB_REF_NAME" \
-            "Taiko-Drum-Menu.bat" \
-            "app/build/outputs/apk/debug/app-debug.apk#Taiko-Phone-Drum-debug.apk" \
+            "dist/Taiko-Phone-Drum-Windows.zip" \
+            "dist/Taiko-Phone-Drum-debug.apk" \
             --title "Taiko Phone Drum $GITHUB_REF_NAME" \
-            --notes "Download the BAT launcher and APK only. Run Taiko-Drum-Menu.bat on Windows, then install the APK on your phone."
+            --notes "Download Taiko-Phone-Drum-Windows.zip for the Windows receiver/menu package and Taiko-Phone-Drum-debug.apk for Android. The ZIP includes the BAT plus all scripts it needs."

@@ -31,9 +31,15 @@ function Resolve-Adb {
     throw "adb.exe was not found. Install Android platform-tools or pass -AdbPath."
 }
 
-$apk = Join-Path $root "app\build\outputs\apk\debug\app-debug.apk"
-if (-not (Test-Path -LiteralPath $apk)) {
-    throw "APK not found: $apk. Run scripts\build-android.ps1 first or pass -BuildFirst."
+$apkCandidates = @(
+    (Join-Path $root "Taiko-Phone-Drum-debug.apk"),
+    (Join-Path $root "app-debug.apk"),
+    (Join-Path $root "app\build\outputs\apk\debug\app-debug.apk")
+)
+
+$apk = $apkCandidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
+if (-not $apk) {
+    throw "APK not found. Put Taiko-Phone-Drum-debug.apk next to Taiko-Drum-Menu.bat, or run scripts\build-android.ps1 first."
 }
 
 $adb = Resolve-Adb -RequestedPath $AdbPath
